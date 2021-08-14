@@ -1,0 +1,92 @@
+{
+  "html_attributions": [],
+  "result": {
+      "address_components": [
+          {
+              "long_name": "7",
+              "short_name": "7",
+              "types": [
+                  "street_number"
+              ]
+          },
+          {
+              "long_name": "Leboh Palas",
+              "short_name": "Leboh Palas",
+              "types": [
+                  "route"
+              ]
+          },
+          {
+              "long_name": "Taman Selatan",
+              "short_name": "Taman Selatan",
+              "types": [
+                  "sublocality_level_1",
+                  "sublocality",
+                  "political"
+              ]
+          },
+          {
+              "long_name": "Klang",
+              "short_name": "Klang",
+              "types": [
+                  "locality",
+                  "political"
+              ]
+          },
+          {
+              "long_name": "Selangor",
+              "short_name": "Selangor",
+              "types": [
+                  "administrative_area_level_1",
+                  "political"
+              ]
+          },
+          {
+              "long_name": "Malaysia",
+              "short_name": "MY",
+              "types": [
+                  "country",
+                  "political"
+              ]
+          },
+          {
+              "long_name": "41200",
+              "short_name": "41200",
+              "types": [
+                  "postal_code"
+              ]
+          }
+      ],
+      "adr_address": "<span class=\"street-address\">7, Leboh Palas</span>, <span class=\"extended-address\">Taman Selatan</span>, <span class=\"postal-code\">41200</span> <span class=\"locality\">Klang</span>, <span class=\"region\">Selangor</span>, <span class=\"country-name\">Malaysia</span>",
+      "formatted_address": "7, Leboh Palas, Taman Selatan, 41200 Klang, Selangor, Malaysia",
+      "geometry": {
+          "location": {
+              "lat": 3.0270637,
+              "lng": 101.4379739
+          },
+          "viewport": {
+              "northeast": {
+                  "lat": 3.028371480291502,
+                  "lng": 101.4393057302915
+              },
+              "southwest": {
+                  "lat": 3.025673519708498,
+                  "lng": 101.4366077697085
+              }
+          }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png",
+      "icon_background_color": "#7B9EB0",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_pinlet",
+      "name": "7, Leboh Palas",
+      "place_id": "Ej43LCBMZWJvaCBQYWxhcywgVGFtYW4gU2VsYXRhbiwgNDEyMDAgS2xhbmcsIFNlbGFuZ29yLCBNYWxheXNpYSJQEk4KNAoyCVtvk5iorM0xETHKxDVTxAEVGh4LEO7B7qEBGhQKEglFY9yds6zNMRFySLNsX1i-VwwQByoUChIJHYmzuaiszTERSE0AxPzly8g",
+      "reference": "Ej43LCBMZWJvaCBQYWxhcywgVGFtYW4gU2VsYXRhbiwgNDEyMDAgS2xhbmcsIFNlbGFuZ29yLCBNYWxheXNpYSJQEk4KNAoyCVtvk5iorM0xETHKxDVTxAEVGh4LEO7B7qEBGhQKEglFY9yds6zNMRFySLNsX1i-VwwQByoUChIJHYmzuaiszTERSE0AxPzly8g",
+      "types": [
+          "street_address"
+      ],
+      "url": "https://maps.google.com/?q=7,+Leboh+Palas,+Taman+Selatan,+41200+Klang,+Selangor,+Malaysia&ftid=0x31cdaca898936f5b:0x491e1f9a35bbf31b",
+      "utc_offset": 480,
+      "vicinity": "Taman Selatan"
+  },
+  "status": "OK"
+}
