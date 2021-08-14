@@ -2,12 +2,18 @@
 name = "google-maps-places"
 version = "0.1.0"
 edition = "2018"
+description = "Simple crate to get Google Maps Place results"
+homepage = "https://github.com/jonsaw/google-maps-places-rs"
+documentation = "https://github.com/jonsaw/google-maps-places-rs"
+repository = "https://github.com/jonsaw/google-maps-places-rs"
+readme = "https://github.com/jonsaw/google-maps-places-rs"
+license = "MIT"
+keywords = ["maps", "api", "places"]
+categories = ["api-bindings"]
 
 exclude = [
   "test/*",
 ]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 reqwest = { version = "0.11.4", features = ["json"] }
