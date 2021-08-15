@@ -2,8 +2,7 @@ use std::env;
 
 use google_maps_places::places::Places;
 
-#[tokio::main]
-async fn main() {
+fn main() {
     let api_key = match env::var("GOOGLE_MAPS_API_KEY") {
         Ok(val) => val,
         Err(_) => {
@@ -23,7 +22,7 @@ async fn main() {
     let places = Places {
         api_key: api_key,
     };
-    let place = match places.get_map_place(place_id).await {
+    let place = match places.get_map_place(place_id) {
         Ok(b) => b,
         Err(e) => {
             println!("Error {:?}", e);

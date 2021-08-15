@@ -1,8 +1,6 @@
 #[cfg(test)]
 use mockito;
 
-use reqwest;
-
 use crate::error::GoogleMapPlaceError;
 use crate::response::Response;
 
@@ -11,7 +9,7 @@ pub struct Places {
 }
 
 impl Places {
-    pub async fn get_map_place(&self, id: &str) -> Result<Response, GoogleMapPlaceError> {
+    pub fn get_map_place(&self, id: &str) -> Result<Response, GoogleMapPlaceError> {
         if id.is_empty() {
             return Err(GoogleMapPlaceError::BadRequest(
                 "Place id is required".to_string(),
@@ -29,17 +27,19 @@ impl Places {
             base_url, id, self.api_key
         );
 
-        let res = match reqwest::get(url).await {
+        let res = match ureq::get(&url)
+            .call() {
+                Ok(r) => r,
+                Err(e) => {
+                    return Err(GoogleMapPlaceError::Unknown(e.to_string()));
+                },
+            };
+
+        let body = match res.into_json::<Response>() {
             Ok(r) => r,
             Err(e) => {
                 return Err(GoogleMapPlaceError::Unknown(e.to_string()));
-            }
-        };
-        let body = match res.json::<Response>().await {
-            Ok(b) => b,
-            Err(e) => {
-                return Err(GoogleMapPlaceError::Unknown(e.to_string()));
-            }
+            },
         };
 
         Ok(body)
@@ -69,11 +69,11 @@ mod tests {
             .create()
     }
 
-    #[tokio::test]
-    async fn test_valid_map_place() {
+    #[test]
+    fn test_valid_map_place() {
         let _m = setup_mock("place-001");
         let place = Places { api_key: API_KEY.into() };
-        let res = match place.get_map_place("place-001").await {
+        let res = match place.get_map_place("place-001") {
             Ok(b) => b,
             Err(_e) => {
                 assert!(false);
@@ -88,12 +88,12 @@ mod tests {
         }
     }
 
-    #[tokio::test]
-    async fn test_invalid_map_place() {
+    #[test]
+    fn test_invalid_map_place() {
         let _m = setup_mock("place-invalid");
 
         let place = Places { api_key: API_KEY.into() };
-        let res = match place.get_map_place("place-invalid").await {
+        let res = match place.get_map_place("place-invalid") {
             Ok(b) => b,
             Err(_e) => {
                 assert!(false);
@@ -108,12 +108,12 @@ mod tests {
         }
     }
 
-    #[tokio::test]
-    async fn test_denied_map_place() {
+    #[test]
+    fn test_denied_map_place() {
         let _m = setup_mock("place-denied");
 
         let place = Places { api_key: API_KEY.into() };
-        let res = match place.get_map_place("place-denied").await {
+        let res = match place.get_map_place("place-denied") {
             Ok(b) => b,
             Err(_e) => {
                 assert!(false);
