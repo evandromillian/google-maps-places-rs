@@ -82,11 +82,25 @@ mod tests {
             }
         };
 
-        if let Response::OK { result } = res {
-            assert_eq!(result.address_components.len(), 7);
-        } else {
-            assert!(false);
-        }
+        let result = match res {
+            Response::OK { result } => {
+                assert_eq!(result.address_components.len(), 7);
+                result
+            }
+            _ => {
+                assert!(false);
+                return;
+            }
+        };
+
+        assert_eq!(result.street_number().unwrap(), "7");
+        assert_eq!(result.route().unwrap(), "Leboh Palas");
+        assert_eq!(result.sublocality().unwrap(), "Taman Selatan");
+        assert_eq!(result.postal_code().unwrap(), "41200");
+        assert_eq!(result.city().unwrap(), "Klang");
+        assert_eq!(result.state().unwrap(), "Selangor");
+        assert_eq!(result.country().unwrap(), "Malaysia");
+        assert_eq!(result.country_code().unwrap(), "MY");
     }
 
     #[test]

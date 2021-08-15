@@ -60,6 +60,82 @@ pub struct PlaceResult {
     pub vicinity: String,
 }
 
+impl PlaceResult {
+    /// Obtain address component based on `AddressType`
+    pub fn address_component(&self, address_type: &AddressType) -> Option<&AddressComponent> {
+        self.address_components.iter().find(|&c| {
+            match c.types.iter().find(|&t| t == address_type) {
+                Some(_) => true,
+                None => false,
+            }
+        })
+    }
+
+    /// Obtain street number from `address_components`
+    pub fn street_number(&self) -> Option<&str> {
+        match self.address_component(&AddressType::StreetNumber) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain route from `address_components`
+    pub fn route(&self) -> Option<&str> {
+        match self.address_component(&AddressType::Route) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain sublocality from `address_components`
+    pub fn sublocality(&self) -> Option<&str> {
+        match self.address_component(&AddressType::Sublocality) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain postal code from `address_components`
+    pub fn postal_code(&self) -> Option<&str> {
+        match self.address_component(&AddressType::PostalCode) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain city from `address_components`
+    pub fn city(&self) -> Option<&str> {
+        match self.address_component(&AddressType::Locality) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain state from `address_components`
+    pub fn state(&self) -> Option<&str> {
+        match self.address_component(&AddressType::AdministrativeAreaLevel1) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain country from `address_components`
+    pub fn country(&self) -> Option<&str> {
+        match self.address_component(&AddressType::Country) {
+            Some(ac) => Some(&ac.long_name),
+            None => None,
+        }
+    }
+
+    /// Obtain country code from `address_components`
+    pub fn country_code(&self) -> Option<&str> {
+        match self.address_component(&AddressType::Country) {
+            Some(ac) => Some(&ac.short_name),
+            None => None,
+        }
+    }
+}
+
 #[derive(Debug, Deserialize)]
 #[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct PlaceGeometry {
@@ -89,8 +165,8 @@ pub struct AddressComponent {
     types: Vec<AddressType>,
 }
 
-#[derive(Debug, Deserialize)]
-#[cfg_attr(feature = "async-graphql", derive(Enum, Copy, Clone, Eq, PartialEq))]
+#[derive(Debug, Deserialize, Copy, Clone, Eq, PartialEq)]
+#[cfg_attr(feature = "async-graphql", derive(Enum))]
 pub enum AddressType {
     #[serde(rename = "accounting")]
     Accounting,
