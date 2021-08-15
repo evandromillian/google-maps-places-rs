@@ -1,5 +1,8 @@
 use rust_decimal::Decimal;
-use serde::Deserialize;
+use serde::{Deserialize};
+
+#[cfg(feature = "async-graphql")]
+use async_graphql::{SimpleObject, Enum};
 
 /// https://developers.google.com/maps/documentation/places/web-service/details#PlacesDetailsStatus
 #[derive(Debug, Deserialize)]
@@ -40,6 +43,7 @@ pub enum Response {
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct PlaceResult {
     pub address_components: Vec<AddressComponent>,
     pub adr_address: String,
@@ -58,24 +62,28 @@ pub struct PlaceResult {
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct PlaceGeometry {
     pub location: PlaceLatLng,
     pub viewport: Viewport,
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct Viewport {
     pub northeast: PlaceLatLng,
     pub southwest: PlaceLatLng,
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct PlaceLatLng {
     pub lat: Decimal,
     pub lng: Decimal,
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct AddressComponent {
     long_name: String,
     short_name: String,
@@ -83,6 +91,7 @@ pub struct AddressComponent {
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "async-graphql", derive(Enum, Copy, Clone, Eq, PartialEq))]
 pub enum AddressType {
     #[serde(rename = "accounting")]
     Accounting,
