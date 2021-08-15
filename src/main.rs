@@ -8,7 +8,7 @@ fn main() {
         Err(_) => {
             println!("GOOGLE_MAPS_API_KEY env required");
             return;
-        },
+        }
     };
 
     let args: Vec<String> = env::args().collect();
@@ -19,9 +19,7 @@ fn main() {
 
     let place_id = &args[1];
 
-    let places = Places {
-        api_key: api_key,
-    };
+    let places = Places { api_key: api_key };
     let place = match places.get_map_place(place_id) {
         Ok(b) => b,
         Err(e) => {

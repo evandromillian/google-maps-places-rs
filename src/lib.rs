@@ -1,3 +1,3 @@
 pub mod error;
-pub mod response;
 pub mod places;
+pub mod response;

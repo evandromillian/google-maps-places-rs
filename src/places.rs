@@ -27,19 +27,18 @@ impl Places {
             base_url, id, self.api_key
         );
 
-        let res = match ureq::get(&url)
-            .call() {
-                Ok(r) => r,
-                Err(e) => {
-                    return Err(GoogleMapPlaceError::Unknown(e.to_string()));
-                },
-            };
+        let res = match ureq::get(&url).call() {
+            Ok(r) => r,
+            Err(e) => {
+                return Err(GoogleMapPlaceError::Unknown(e.to_string()));
+            }
+        };
 
         let body = match res.into_json::<Response>() {
             Ok(r) => r,
             Err(e) => {
                 return Err(GoogleMapPlaceError::Unknown(e.to_string()));
-            },
+            }
         };
 
         Ok(body)
@@ -72,7 +71,9 @@ mod tests {
     #[test]
     fn test_valid_map_place() {
         let _m = setup_mock("place-001");
-        let place = Places { api_key: API_KEY.into() };
+        let place = Places {
+            api_key: API_KEY.into(),
+        };
         let res = match place.get_map_place("place-001") {
             Ok(b) => b,
             Err(_e) => {
@@ -92,7 +93,9 @@ mod tests {
     fn test_invalid_map_place() {
         let _m = setup_mock("place-invalid");
 
-        let place = Places { api_key: API_KEY.into() };
+        let place = Places {
+            api_key: API_KEY.into(),
+        };
         let res = match place.get_map_place("place-invalid") {
             Ok(b) => b,
             Err(_e) => {
@@ -112,7 +115,9 @@ mod tests {
     fn test_denied_map_place() {
         let _m = setup_mock("place-denied");
 
-        let place = Places { api_key: API_KEY.into() };
+        let place = Places {
+            api_key: API_KEY.into(),
+        };
         let res = match place.get_map_place("place-denied") {
             Ok(b) => b,
             Err(_e) => {

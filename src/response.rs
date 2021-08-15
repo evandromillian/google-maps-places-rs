@@ -1,14 +1,13 @@
 use rust_decimal::Decimal;
-use serde::{Deserialize};
+use serde::Deserialize;
 
 #[cfg(feature = "async-graphql")]
-use async_graphql::{SimpleObject, Enum};
+use async_graphql::{Enum, SimpleObject};
 
 /// https://developers.google.com/maps/documentation/places/web-service/details#PlacesDetailsStatus
 #[derive(Debug, Deserialize)]
 #[serde(tag = "status")]
 pub enum Response {
-
     /// `OK` indicating the API request was successful.
     /// Includes `PlaceResult` in `result`.
     #[serde(rename = "OK")]
