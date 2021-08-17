@@ -4,13 +4,13 @@ use mockito;
 use crate::error::GoogleMapPlaceError;
 use crate::response::Response;
 
-pub struct Places {
-    pub api_key: String,
+pub struct Places<'a> {
+    pub api_key: &'a str,
 }
 
-impl Places {
-    pub fn get_map_place(&self, id: &str) -> Result<Response, GoogleMapPlaceError> {
-        if id.is_empty() {
+impl<'a> Places<'a> {
+    pub fn get_map_place(&self, place_id: &str) -> Result<Response, GoogleMapPlaceError> {
+        if place_id.is_empty() {
             return Err(GoogleMapPlaceError::BadRequest(
                 "Place id is required".to_string(),
             ));
@@ -24,7 +24,7 @@ impl Places {
 
         let url = format!(
             "{}/maps/api/place/details/json?place_id={}&key={}",
-            base_url, id, self.api_key
+            base_url, place_id, self.api_key
         );
 
         let res = match ureq::get(&url).call() {
