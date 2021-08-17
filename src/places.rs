@@ -1,14 +1,59 @@
 #[cfg(test)]
 use mockito;
 
-use crate::error::GoogleMapPlaceError;
-use crate::response::Response;
+use crate::{GoogleMapPlaceError, Response};
 
+/// Initiate Places struct with `api_key`.
+/// ```
+/// use google_maps_places::Places;
+/// let places = &Places { api_key: "api-key" };
+/// ```
 pub struct Places<'a> {
     pub api_key: &'a str,
 }
 
 impl<'a> Places<'a> {
+    /// Run API call to Google Maps
+    ///
+    /// ## Arguments
+    ///
+    /// * `place_id` - Place ID obtained from Google Place Search / Autocomplete
+    ///
+    /// ## Examples
+    ///
+    /// ```
+    /// use google_maps_places::{Places, Response};
+    ///
+    /// let places = &Places { api_key: "api-key" };
+    /// let res = match places.get_map_place("ChIJATaCWGU3zDER32m__CAwDyY") {
+    ///     Ok(b) => b,
+    ///     Err(e) => {
+    ///         println!("Error {:?}", e);
+    ///         return;
+    ///     }
+    /// };
+    ///
+    /// match res {
+    ///     Response::OK { result } => {
+    ///         println!("Result: {:?}", result);
+    ///     }
+    ///     Response::ZeroResults => {
+    ///         println!("Zero results");
+    ///     }
+    ///     Response::InvalidRequest => {
+    ///         println!("Invalid Request");
+    ///     }
+    ///     Response::OverQueryLimit => {
+    ///         println!("Over Query Limit");
+    ///     }
+    ///     Response::RequestDenied { error_message } => {
+    ///         println!("Request Denied: {}", error_message);
+    ///     }
+    ///     Response::UnknownError => {
+    ///         println!("Unknown Error")
+    ///     }
+    /// };
+    /// ```
     pub fn get_map_place(&self, place_id: &str) -> Result<Response, GoogleMapPlaceError> {
         if place_id.is_empty() {
             return Err(GoogleMapPlaceError::BadRequest(
