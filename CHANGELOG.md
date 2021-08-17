@@ -1,6 +1,15 @@
 # Change Log
 
-## [0.1.2] - 2020-08-16
+## [0.1.3] - 2021-08-17
+### Added
+- Added `GoogleMapPlaceError` to lib exports
+- Added `Places` to lib exports
+- Added `Response` to lib exports
+
+### Changed
+- Changed `Places` lifetime
+
+## [0.1.2] - 2021-08-16
 ### Added
 - Added `PlaceResult` helper methods to obtain address components like:
     - `street_number`
@@ -12,7 +21,7 @@
     - `country`
     - `country_code`
 
-## [0.1.1] - 2020-08-15
+## [0.1.1] - 2021-08-15
 ### Changed
 - Changed network dependency from `reqwest` to `ureq`
 
