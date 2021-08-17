@@ -34,7 +34,7 @@ impl<'a> Places<'a> {
     /// };
     ///
     /// match res {
-    ///     Response::OK { result } => {
+    ///     Response::Ok { result } => {
     ///         println!("Result: {:?}", result);
     ///     }
     ///     Response::ZeroResults => {
@@ -128,7 +128,7 @@ mod tests {
         };
 
         let result = match res {
-            Response::OK { result } => {
+            Response::Ok { result } => {
                 assert_eq!(result.address_components.len(), 7);
                 result
             }

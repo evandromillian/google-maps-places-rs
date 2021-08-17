@@ -30,7 +30,7 @@ fn main() {
     };
 
     match res {
-        Response::OK { result } => {
+        Response::Ok { result } => {
             println!("id                : {}", result.place_id);
             println!("name              : {}", result.name);
             println!("formatted_address : {}", result.formatted_address);

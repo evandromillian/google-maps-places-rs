@@ -11,7 +11,7 @@ pub enum Response {
     /// `OK` indicating the API request was successful.
     /// Includes `PlaceResult` in `result`.
     #[serde(rename = "OK")]
-    OK { result: PlaceResult },
+    Ok { result: PlaceResult },
 
     /// `ZERO_RESULTS` indicating that the referenced location, place_id, was valid but no longer refers to a valid result.
     /// This may occur if the establishment is no longer in business.
