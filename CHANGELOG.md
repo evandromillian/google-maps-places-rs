@@ -5,7 +5,7 @@
 - Added `response::PlaceResult` to lib exports
 
 ### Changed
-- Changed `Response::OK` to `Resposne::Ok`
+- Changed `Response::OK` to `Response::Ok`
 
 ## [0.1.3] - 2021-08-17
 ### Added
