@@ -1,6 +1,6 @@
 [package]
 name = "google-maps-places"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2018"
 description = "Simple crate to get Google Maps Place results"
 homepage = "https://github.com/jonsaw/google-maps-places-rs"
