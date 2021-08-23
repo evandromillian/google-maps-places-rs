@@ -373,7 +373,7 @@ dependencies = [
 
 [[package]]
 name = "google-maps-places"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "async-graphql",
  "mockito",

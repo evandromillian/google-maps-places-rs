@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.1.6] - 2021-08-23
+### Changed
+- Changed `PlaceResult` values to optional
+
 ## [0.1.5] - 2021-08-23
 ### Changed
 - Changed lat & lng from `Decimal` to `f64`
