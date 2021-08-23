@@ -138,6 +138,12 @@ mod tests {
             }
         };
 
+        assert_eq!(result.geometry.location.lat, 3.0270637);
+        assert_eq!(result.geometry.location.lng, 101.4379739);
+        assert_eq!(result.geometry.viewport.northeast.lat, 3.028371480291502);
+        assert_eq!(result.geometry.viewport.northeast.lng, 101.4393057302915);
+        assert_eq!(result.geometry.viewport.southwest.lat, 3.025673519708498);
+        assert_eq!(result.geometry.viewport.southwest.lng, 101.4366077697085);
         assert_eq!(result.street_number().unwrap(), "7");
         assert_eq!(result.route().unwrap(), "Leboh Palas");
         assert_eq!(result.sublocality().unwrap(), "Taman Selatan");

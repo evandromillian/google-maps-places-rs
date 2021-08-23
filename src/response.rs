@@ -1,4 +1,3 @@
-use rust_decimal::Decimal;
 use serde::Deserialize;
 
 #[cfg(feature = "async-graphql")]
@@ -153,8 +152,8 @@ pub struct Viewport {
 #[derive(Debug, Deserialize)]
 #[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct PlaceLatLng {
-    pub lat: Decimal,
-    pub lng: Decimal,
+    pub lat: f64,
+    pub lng: f64,
 }
 
 #[derive(Debug, Deserialize)]
