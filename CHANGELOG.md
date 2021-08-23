@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.1.5] - 2021-08-23
+### Changed
+- Changed lat & lng from `Decimal` to `f64`
+
+### Removed
+- Removed `rust_decimal` dependency
+
 ## [0.1.4] - 2021-08-17
 ### Added
 - Added `response::PlaceResult` to lib exports
