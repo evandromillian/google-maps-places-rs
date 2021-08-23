@@ -40,34 +40,39 @@ pub enum Response {
     UnknownError,
 }
 
+/// Attributes describing a place
+/// https://developers.google.com/maps/documentation/places/web-service/details#Place
 #[derive(Debug, Deserialize)]
 #[cfg_attr(feature = "async-graphql", derive(SimpleObject))]
 pub struct PlaceResult {
-    pub address_components: Vec<AddressComponent>,
-    pub adr_address: String,
-    pub formatted_address: String,
-    pub geometry: PlaceGeometry,
-    pub icon: String,
-    pub icon_background_color: String,
-    pub icon_mask_base_uri: String,
-    pub name: String,
-    pub place_id: String,
-    pub reference: String,
-    pub types: Vec<AddressType>,
-    pub url: String,
-    pub utc_offset: i32,
-    pub vicinity: String,
+    pub address_components: Option<Vec<AddressComponent>>,
+    pub adr_address: Option<String>,
+    pub formatted_address: Option<String>,
+    pub geometry: Option<PlaceGeometry>,
+    pub icon: Option<String>,
+    pub icon_background_color: Option<String>,
+    pub icon_mask_base_uri: Option<String>,
+    pub name: Option<String>,
+    pub place_id: Option<String>,
+    pub reference: Option<String>,
+    pub types: Option<Vec<AddressType>>,
+    pub url: Option<String>,
+    pub utc_offset: Option<i32>,
+    pub vicinity: Option<String>,
 }
 
 impl PlaceResult {
     /// Obtain address component based on `AddressType`
     pub fn address_component(&self, address_type: &AddressType) -> Option<&AddressComponent> {
-        self.address_components.iter().find(|&c| {
-            match c.types.iter().find(|&t| t == address_type) {
-                Some(_) => true,
-                None => false,
-            }
-        })
+        match self.address_components.as_ref() {
+            Some(ac) => ac
+                .iter()
+                .find(|&c| match c.types.iter().find(|&t| t == address_type) {
+                    Some(_) => true,
+                    None => false,
+                }),
+            None => None,
+        }
     }
 
     /// Obtain street number from `address_components`

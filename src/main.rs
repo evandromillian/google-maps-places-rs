@@ -31,9 +31,9 @@ fn main() {
 
     match res {
         Response::Ok { result } => {
-            println!("id                : {}", result.place_id);
-            println!("name              : {}", result.name);
-            println!("formatted_address : {}", result.formatted_address);
+            println!("id                : {:?}", result.place_id);
+            println!("name              : {:?}", result.name);
+            println!("formatted_address : {:?}", result.formatted_address);
             println!("");
 
             println!("street_number : {}", result.street_number().unwrap_or(""),);
